@@ -2,16 +2,29 @@
 + 进入本地库文件夹
 >cd 文件夹
 + 克隆远程库
->git clone https://github.com/DanMMMM/study.git [本地目录]
+>$ git clone https://github.com/DanMMMM/study.git [本地目录]
 + 初始化本地库
->git init
+>$ git init
 + 提交到本地库
->git add "文件名"
->git commit -m '提交备注'
+>$ git add "文件名"
+>$ git commit -m '提交备注'
 + 查看本地文件
 >ls -al
 + 查看本地库状态
->git status
+>$ git status
++ 查看修改
+>$ git diff
++ 提交历史
+>$ git log --pretty=oneline
++ 版本回退
+>$ git reset --hard commit_id(HEAD^)
++ 记录命令
+>$ git reflog
++ 撤销暂存区修改
+>$ git checkout -- '文件'
++ 删除文件
+>$ git rm '文件'
+>$ git commit -m '备注'
 + github中创建repository study
 + 本地仓库下关联github中的远程库
 >$ git remote add origin git@github.com:DanMMMM/study.git  
@@ -24,9 +37,16 @@ origin是远程库的名字，可更改
 ## 分支
 + 创建分支，切换分支
 >$ git branch '分支'  
->$ git checkout '分支'  
->$ git repo start
+>$ git checkout '分支'   
+>$ git checkout -b '分支'   
+>$ git repo start  
 repo start如果存在分支则切换分支，若不存在则创建并切换分支
++ 查看分支
+>$ git branch
++ 合并其他分支的内容到当前分支（首先要切换到当前分支）
+>$ git merge '分支'
++ 删除分支
+>$ git branch -d '分支'
 + 将分支添加到github上
 >$ git --set-upstream origin '分支'
 + 查看分支的文件夹列表，删除分支上的单个文件夹（首先要切换到该分支）
