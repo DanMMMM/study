@@ -30,6 +30,38 @@ function inertionSort(arr){
 ### 希尔排序
 平均时间复杂度*O(n^1.3)*，最坏时间复杂度*O(n^2)*，最好时间复杂度*O(n)*，空间复杂度*O(1)*，不稳定算法。  
 将整个待排序序列分割成为若干自序列分别进行直接插入排序。
+```
+function shellSort(arr) {
+    var len = arr.length,
+        temp,
+        gap = 1;
+    console.time('希尔排序耗时:');
+    while(gap < len/5) {          //动态定义间隔序列
+        gap = gap*5+1;
+    }
+    for (gap; gap > 0; gap = Math.floor(gap/5)) {
+        for (var i = gap; i < len; i++) {
+            temp = arr[i];
+            for (var j = i-gap; j >= 0 && arr[j] > temp; j-=gap) {
+                arr[j+gap] = arr[j];
+            }
+            arr[j+gap] = temp;
+        }
+        console.log(arr);
+    }
+    console.timeEnd('希尔排序耗时:');
+    return arr;
+}
+```
+9 7 8 2 5 1 3 6 4  
+3 6 4 2 5 1 9 7 8  
+3 4 6 2 5 1 9 7 8  
+2 3 4 6 5 1 9 7 8  
+2 3 4 5 6 1 9 7 8  
+1 2 3 4 5 6 9 7 8  
+1 2 3 4 5 6 7 9 8  
+1 2 3 4 5 6 7 8 9  
+耗时：3.048ms
 ### 选择排序
 平均时间复杂度*O(n^2)*，最坏时间复杂度*O(n^2)*，最好时间复杂度*O(n^2)*，空间复杂度*O(1)*，不稳定算法。  
 先在未排序序列中找到最小元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小元素，然后放到已排序序列的末尾。以此类推，知道所有元素均排序完毕。 

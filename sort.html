@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	window.onload = function () {
+		var arr = [9, 7, 8, 2, 5, 1, 3, 6, 4];
+		//inertionSort(arr);
+		shellSort(arr);
+		//selectionSort(arr);
+		//bubbleSort(arr);
+		//quickSort(arr);
+	}
+	//插入算法
+	function inertionSort(arr){
+	    var len = arr.length;
+	    var preIndex, current;
+	    console.time('插入算法耗时:');
+	    for(let i = 1;i < len; i++){
+	        preIndex = i - 1;
+	        current = arr[i];
+	        while(preIndex >= 0 && arr[preIndex] > current){
+	            arr[preIndex + 1] = arr[preIndex];
+	            preIndex--;
+	        }
+	        arr[preIndex + 1] = current;
+	        console.log(arr);
+	    }
+	    console.timet('插入算法耗时:');
+	    return arr;
+	}
+	//希尔排序
+	function shellSort(arr) {
+	    var len = arr.length,
+	        temp,
+	        gap = 1;
+	    console.time('希尔排序耗时:');
+	    while(gap < len/5) {          //动态定义间隔序列
+	        gap = gap*5+1;
+	    }
+	    for (gap; gap > 0; gap = Math.floor(gap/5)) {
+	        for (var i = gap; i < len; i++) {
+	            temp = arr[i];
+	            for (var j = i-gap; j >= 0 && arr[j] > temp; j-=gap) {
+	                arr[j+gap] = arr[j];
+	            }
+	            arr[j+gap] = temp;
+	        	console.log(arr);
+	        }
+	    }
+	    console.timeEnd('希尔排序耗时:');
+	    return arr;
+	}
+	//选择算法
+	function selectionSort(arr){
+	    var len = arr.length;
+	    var minIndex, temp;
+	    for(let i = 0;i < len;i++){
+	        minIndex = i;
+	        for(let j = i + 1;j < len;j++){
+	            if(arr[j] < arr[minIndex])
+	                minIndex = j;
+	        }
+	        temp = arr[i];
+	        arr[i] = arr[minIndex];
+	        arr[minIndex] = temp;
+	        console.log(arr);
+	    }
+	    return arr;
+	}
+	//冒泡算法
+	function bubbleSort(arr){
+	    var len = arr.length;
+	    for(let i = 0;i < len - 1;i++){
+	        for(let j = 0;j < len -1;j++){
+	            if(arr[j] > arr[j+1]){
+	                let temp = arr[j+1];
+	                arr[j+1] = arr[j];
+	                arr[j] = temp;
+	            }
+	        }
+	        console.log(arr);
+	    }
+	    return arr;
+	}
+	//快速排序
+	function quickSort(arr){
+	    if(arr.length <= 1) return arr;
+	    var flag = Math.floor(arr.length/2);
+	    var middle = arr.splice(flag, 1);
+	    var left = [];
+	    var right = [];
+	    for(let i = 0;i < arr.length;i++){
+	        if(arr[i] > middle){
+	            right.push(arr[i]);
+	        }else{
+	            left.push(arr[i]);
+	        }
+	        console.log("right:"+right+"   arr:"+arr+"    left:"+left);
+	    }
+	    return quickSort(left).concat(middle, quickSort(right));
+	}
+</script>
+</body>
+</html>
